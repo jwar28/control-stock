@@ -1,0 +1,56 @@
+<script>
+  import { signInWithEmailAndPassword } from 'firebase/auth';
+
+  const credentials = {
+    email: '',
+    password: '',
+  };
+
+  let errorMessage = '';
+
+  /**
+   * @type {import("@firebase/auth").Auth}
+   */
+  export let auth;
+</script>
+
+<img src="/logo.png" alt="" class="w-[30%]" />
+<div class="card p-4 w-[30%] flex justify-center shadow-xl h-fit">
+  <div class="w-[90%] flex flex-col gap-8">
+    <p class="text-3xl text-center font-semibold">Iniciar sesión</p>
+    <label class="label">
+      <span>Correo electronico</span>
+      <input
+        class="input"
+        type="email"
+        placeholder="john@example.com"
+        autocomplete="email"
+        bind:value={credentials.email}
+      />
+    </label>
+    <label class="label">
+      <span>Contraseña</span>
+      <input
+        class="input"
+        type="password"
+        placeholder="password"
+        bind:value={credentials.password}
+      />
+    </label>
+    <button
+      type="button"
+      class="btn variant-filled-secondary"
+      on:click={() =>
+        signInWithEmailAndPassword(
+          auth,
+          credentials.email,
+          credentials.password
+        ).catch((error) => {
+          errorMessage = error.message;
+        })}>Ingresar</button
+    >
+    {#if errorMessage}
+      <p class="text-error-500 text-center">{errorMessage}</p>
+    {/if}
+  </div>
+</div>
