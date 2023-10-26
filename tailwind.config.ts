@@ -23,7 +23,7 @@ export default {
       themes: {
         preset: [
           {
-            name: 'skeleton',
+            name: 'hamlindigo',
             enhancements: true,
           },
         ],

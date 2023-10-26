@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
+  import { fade } from 'svelte/transition';
   import { SignedIn } from 'sveltefire';
 
   const fillColors = {
@@ -23,7 +24,7 @@
 </script>
 
 <SignedIn let:signOut>
-  <AppRail>
+  <AppRail width="w-24">
     <!-- Logo -->
     <svelte:fragment slot="lead">
       <AppRailAnchor href="/"><img src="/logo.png" alt="" /></AppRailAnchor>

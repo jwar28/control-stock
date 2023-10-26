@@ -1,6 +1,5 @@
-<script>
-  import SignInForm from '$lib/components/SignInForm.svelte';
-  import { Collection, SignedIn, SignedOut } from 'sveltefire';
+<script lang="ts">
+  import { Collection } from 'sveltefire';
 </script>
 
 <Collection ref="products" let:data={products}>
