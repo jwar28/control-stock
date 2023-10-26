@@ -1,17 +1,15 @@
-<script>
-  import { signInWithEmailAndPassword } from 'firebase/auth';
+<script lang="ts">
+  import { signInWithEmailAndPassword, type Auth } from 'firebase/auth';
+  import type { User } from '$lib/types/user';
 
-  const credentials = {
+  const user: User = {
     email: '',
     password: '',
   };
 
   let errorMessage = '';
 
-  /**
-   * @type {import("@firebase/auth").Auth}
-   */
-  export let auth;
+  export let auth: Auth;
 </script>
 
 <img src="/logo.png" alt="" class="w-[30%]" />
@@ -25,7 +23,7 @@
         type="email"
         placeholder="john@example.com"
         autocomplete="email"
-        bind:value={credentials.email}
+        bind:value={user.email}
       />
     </label>
     <label class="label">
@@ -34,20 +32,18 @@
         class="input"
         type="password"
         placeholder="password"
-        bind:value={credentials.password}
+        bind:value={user.password}
       />
     </label>
     <button
       type="button"
       class="btn variant-filled-secondary"
       on:click={() =>
-        signInWithEmailAndPassword(
-          auth,
-          credentials.email,
-          credentials.password
-        ).catch((error) => {
-          errorMessage = error.message;
-        })}>Ingresar</button
+        signInWithEmailAndPassword(auth, user.email, user.password).catch(
+          (error) => {
+            errorMessage = error.message;
+          }
+        )}>Ingresar</button
     >
     {#if errorMessage}
       <p class="text-error-500 text-center">{errorMessage}</p>
