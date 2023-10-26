@@ -9,7 +9,3 @@
     <p>{product.description}</p>
   {/each}
 </Collection>
-
-<SignedIn let:signOut>
-  <button class="btn variant-filled" on:click={signOut}>Sign Out</button>
-</SignedIn>

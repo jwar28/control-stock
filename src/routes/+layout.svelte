@@ -19,6 +19,7 @@
   } from '@floating-ui/dom';
   import { storePopup } from '@skeletonlabs/skeleton';
   import SignInForm from '$lib/components/SignInForm.svelte';
+  import AppRail from '$lib/components/ui/AppRail.svelte';
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
   // Initialize Firebase
@@ -31,10 +32,13 @@
 <FirebaseApp {auth} {firestore}>
   <SignedIn
     ><AppShell>
-      <svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment>
-      <!-- Router Slot -->
-      <slot />
-      <svelte:fragment slot="footer">Footer</svelte:fragment>
+      <svelte:fragment slot="sidebarLeft">
+        <AppRail />
+      </svelte:fragment>
+      <div class="m-5">
+        <slot />
+      </div>
+      <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment>
     </AppShell>
   </SignedIn>
   <SignedOut let:auth>
