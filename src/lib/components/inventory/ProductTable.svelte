@@ -110,7 +110,22 @@
             </button>
             |
             <!-- Delete button -->
-            <button on:click={() => deleteProductById(getProductId(product))}>
+            <button
+              on:click={() => {
+                modalStore.trigger({
+                  type: 'confirm',
+                  title: 'Confirmar eliminacion',
+                  body: 'Esta seguro de querer borrar este producto?',
+                  buttonTextCancel: 'Cancelar',
+                  buttonTextConfirm: 'Confirmar',
+                  response(r) {
+                    if (r) {
+                      deleteProductById(getProductId(product));
+                    }
+                  },
+                });
+              }}
+            >
               <svg
                 width="20px"
                 height="20px"
