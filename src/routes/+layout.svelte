@@ -1,13 +1,17 @@
 <script lang="ts">
   import '../app.postcss';
-  import { AppShell } from '@skeletonlabs/skeleton';
+  import {
+    AppShell,
+    Modal,
+    initializeStores,
+    type ModalComponent,
+  } from '@skeletonlabs/skeleton';
   import { FirebaseApp, SignedOut } from 'sveltefire';
   import { initializeApp } from 'firebase/app';
   import { getFirestore } from 'firebase/firestore';
   import { getAuth } from 'firebase/auth';
   import { firebaseConfig } from '$lib/config/firebase';
   import { SignedIn } from 'sveltefire';
-
   import {
     computePosition,
     autoUpdate,
@@ -19,11 +23,16 @@
   import { storePopup } from '@skeletonlabs/skeleton';
   import SignInForm from '$lib/components/auth/SignInForm.svelte';
   import AppRail from '$lib/components/ui/AppRail.svelte';
-  storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+  import ProductFormModal from '$lib/components/modals/ProductFormModal.svelte';
 
+  storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+  initializeStores();
   const app = initializeApp(firebaseConfig);
   const firestore = getFirestore(app);
   const auth = getAuth(app);
+  const modalRegistry: Record<string, ModalComponent> = {
+    productFormModal: { ref: ProductFormModal },
+  };
 </script>
 
 <svelte:head>
@@ -36,6 +45,8 @@
   />
   <meta />
 </svelte:head>
+
+<Modal components={modalRegistry} />
 
 <!-- App Shell -->
 <FirebaseApp {auth} {firestore}>

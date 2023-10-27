@@ -1,11 +1,6 @@
 <script lang="ts">
   import type { Product } from '$lib/types/product';
-  import {
-    tableMapperValues,
-    type PaginationSettings,
-    type TableSource,
-    Paginator,
-  } from '@skeletonlabs/skeleton';
+  import { type PaginationSettings, Paginator } from '@skeletonlabs/skeleton';
   import { collectionStore, getFirebaseContext } from 'sveltefire';
 
   export let productSearch: string;
@@ -13,7 +8,6 @@
   const { firestore } = getFirebaseContext();
   const productList = collectionStore<Product>(firestore!, 'products');
 
-  let productTable: TableSource;
   let filteredProductList: Product[] = [];
 
   let paginationSettings = {
@@ -33,26 +27,6 @@
     paginationSettings.size = filteredProductList.length;
   }
 
-  $: {
-    productTable = {
-      head: ['Nombre', 'Descripcion', 'Stock', 'Precio', 'Activo'],
-      body: tableMapperValues(filteredProductList, [
-        'name',
-        'description',
-        'stock',
-        'price',
-        'active',
-      ]),
-      meta: tableMapperValues(filteredProductList, [
-        'name',
-        'description',
-        'stock',
-        'price',
-        'active',
-      ]),
-    };
-  }
-
   $: paginatedSource = filteredProductList.slice(
     paginationSettings.page * paginationSettings.limit,
     paginationSettings.page * paginationSettings.limit +
@@ -65,9 +39,9 @@
     <tr>
       <th>Nombre</th>
       <th>Descripcion</th>
+      <th>Marca</th>
       <th>Stock</th>
       <th>Precio</th>
-      <th>Activo</th>
       <th class="w-20">#</th>
     </tr>
   </thead>
@@ -81,13 +55,13 @@
           {product.description}
         </td>
         <td>
+          {product.brand}
+        </td>
+        <td>
           {product.stock}
         </td>
         <td>
           {product.price}
-        </td>
-        <td>
-          {product.active}
         </td>
         <td>
           <div class="invisible group-hover:visible flex justify-around">

@@ -4,7 +4,7 @@
 </script>
 
 <input
-  class="input w-80 py-3"
+  class="input w-96 py-3"
   type="search"
   bind:value={searchString}
   {placeholder}
