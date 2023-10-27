@@ -1,12 +1,19 @@
 <script lang="ts">
+  import { deleteProductById } from '$lib/api/productApi';
   import { firestore } from '$lib/firebase';
   import type { Product } from '$lib/types/product';
   import { type PaginationSettings, Paginator } from '@skeletonlabs/skeleton';
   import { collectionStore } from 'sveltefire';
+  import { getModalStore } from '@skeletonlabs/skeleton';
+  import ProductUpdateModal from '../modals/ProductUpdateModal.svelte';
 
   export let productSearch: string;
 
+  const modalStore = getModalStore();
+
   const productList = collectionStore<Product>(firestore, 'products');
+
+  const getProductId = (product: any): string => product.id;
 
   let filteredProductList: Product[] = [];
 
@@ -66,7 +73,26 @@
         <td>
           <div class="invisible group-hover:visible flex justify-around">
             <!-- Edit button -->
-            <button>
+            <button
+              on:click={() => {
+                modalStore.trigger({
+                  type: 'component',
+                  component: {
+                    ref: ProductUpdateModal,
+                    props: {
+                      name: product.name,
+                      description: product.description,
+                      brand: product.brand,
+                      stock: product.stock,
+                      price: product.price,
+                      productId: getProductId(product),
+                    },
+                  },
+                  title: 'Actualizar producto',
+                  body: 'Ingrese los nuevos datos del producto',
+                });
+              }}
+            >
               <svg
                 width="20px"
                 height="20px"
@@ -84,7 +110,7 @@
             </button>
             |
             <!-- Delete button -->
-            <button>
+            <button on:click={() => deleteProductById(getProductId(product))}>
               <svg
                 width="20px"
                 height="20px"
