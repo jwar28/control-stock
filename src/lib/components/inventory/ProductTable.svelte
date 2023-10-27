@@ -1,12 +1,12 @@
 <script lang="ts">
+  import { firestore } from '$lib/firebase';
   import type { Product } from '$lib/types/product';
   import { type PaginationSettings, Paginator } from '@skeletonlabs/skeleton';
-  import { collectionStore, getFirebaseContext } from 'sveltefire';
+  import { collectionStore } from 'sveltefire';
 
   export let productSearch: string;
 
-  const { firestore } = getFirebaseContext();
-  const productList = collectionStore<Product>(firestore!, 'products');
+  const productList = collectionStore<Product>(firestore, 'products');
 
   let filteredProductList: Product[] = [];
 

@@ -7,10 +7,6 @@
     type ModalComponent,
   } from '@skeletonlabs/skeleton';
   import { FirebaseApp, SignedOut } from 'sveltefire';
-  import { initializeApp } from 'firebase/app';
-  import { getFirestore } from 'firebase/firestore';
-  import { getAuth } from 'firebase/auth';
-  import { firebaseConfig } from '$lib/config/firebase';
   import { SignedIn } from 'sveltefire';
   import {
     computePosition,
@@ -25,12 +21,11 @@
   import AppRail from '$lib/components/ui/AppRail.svelte';
   import ProductFormModal from '$lib/components/modals/ProductFormModal.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
+  import { auth, firestore, storage } from '$lib/firebase';
 
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
   initializeStores();
-  const app = initializeApp(firebaseConfig);
-  const firestore = getFirestore(app);
-  const auth = getAuth(app);
+
   const modalRegistry: Record<string, ModalComponent> = {
     productFormModal: { ref: ProductFormModal },
   };
@@ -50,7 +45,7 @@
 <Modal components={modalRegistry} />
 
 <!-- App Shell -->
-<FirebaseApp {auth} {firestore}>
+<FirebaseApp {auth} {firestore} {storage}>
   <SignedIn>
     <AppShell>
       <!-- Sidebar -->

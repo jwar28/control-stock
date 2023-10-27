@@ -7,7 +7,7 @@
 
   const modalStore = getModalStore();
 
-  const product: Product = {
+  const productData: Product = {
     name: '',
     description: '',
     price: 0,
@@ -15,9 +15,8 @@
     brand: '',
   };
 
-  function onFormSubmit(): void {
-    if ($modalStore[0].response) $modalStore[0].response(product);
-    console.log(product);
+  async function onFormSubmit() {
+    if ($modalStore[0].response) $modalStore[0].response(productData);
     modalStore.close();
   }
 
@@ -38,7 +37,7 @@
           <input
             class="input"
             type="text"
-            bind:value={product.name}
+            bind:value={productData.name}
             placeholder="Nombre del producto..."
           />
         </label>
@@ -47,7 +46,7 @@
           <input
             class="input"
             type="text"
-            bind:value={product.description}
+            bind:value={productData.description}
             placeholder="Descripcion del producto..."
           />
         </label>
@@ -59,7 +58,7 @@
           <input
             class="input"
             type="number"
-            bind:value={product.price}
+            bind:value={productData.price}
             placeholder="Ingrese el precio del producto..."
           />
         </label>
@@ -68,7 +67,7 @@
           <input
             class="input"
             type="number"
-            bind:value={product.stock}
+            bind:value={productData.stock}
             placeholder="Ingrese el stock del producto..."
           />
         </label>
@@ -79,7 +78,7 @@
         <input
           class="input"
           type="text"
-          bind:value={product.brand}
+          bind:value={productData.brand}
           placeholder="Marca del producto..."
         />
       </label>

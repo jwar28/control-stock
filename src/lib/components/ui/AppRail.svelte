@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
-  import { fade } from 'svelte/transition';
   import { SignedIn } from 'sveltefire';
 
   const fillColors = {
