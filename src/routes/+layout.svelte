@@ -22,6 +22,7 @@
   import ProductFormModal from '$lib/components/modals/ProductFormModal.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import { auth, firestore, storage } from '$lib/firebase';
+  import { page } from '$app/stores';
 
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
   initializeStores();
@@ -32,7 +33,7 @@
 </script>
 
 <svelte:head>
-  <title>Control Stock</title>
+  <title>Control Stock - {$page.data.title}</title>
   <meta
     title="Control stock"
     name="description"

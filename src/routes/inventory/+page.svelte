@@ -2,6 +2,7 @@
   import AddProductButton from './../../lib/components/inventory/AddProductButton.svelte';
   import ProductTable from '$lib/components/inventory/ProductTable.svelte';
   import Searchbar from '$lib/components/ui/Searchbar.svelte';
+  import { page } from '$app/stores';
 
   let productSearch = '';
 </script>
