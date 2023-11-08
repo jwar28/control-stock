@@ -6,6 +6,7 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  getDocs,
 } from 'firebase/firestore';
 
 export const createProduct = async (productData: Product) =>
@@ -20,4 +21,18 @@ export const updateProductById = async (
 ) => {
   const productRef = doc(firestore, 'products', productId);
   await updateDoc(productRef, productData);
+};
+
+export const getTotalProducts = async () => {
+  const products = await getDocs(collection(firestore, 'products'));
+  return products.size;
+};
+
+export const getTotalStockPrice = async () => {
+  const products = await getDocs(collection(firestore, 'products'));
+  let total = 0;
+  products.forEach((product) => {
+    total += product.data().stock * product.data().price;
+  });
+  return total;
 };

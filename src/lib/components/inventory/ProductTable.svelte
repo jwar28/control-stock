@@ -70,6 +70,7 @@
         <td>
           {product.price}
         </td>
+        <!-- Crud buttons -->
         <td>
           <div class="invisible group-hover:visible flex justify-around">
             <!-- Edit button -->
