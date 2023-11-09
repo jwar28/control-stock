@@ -7,6 +7,8 @@
 </script>
 
 <div class="flex flex-col gap-5 h-full">
+  <p class="text-xl">Inventario</p>
+  <hr />
   <!-- Searchbar -->
   <div class="mt-0.5 flex w-full justify-between">
     <Searchbar

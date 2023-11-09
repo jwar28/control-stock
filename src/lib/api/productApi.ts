@@ -23,7 +23,7 @@ export const updateProductById = async (
   await updateDoc(productRef, productData);
 };
 
-export const getTotalProducts = async () => {
+export const getProductsCount = async () => {
   const products = await getDocs(collection(firestore, 'products'));
   return products.size;
 };
@@ -33,6 +33,15 @@ export const getTotalStockPrice = async () => {
   let total = 0;
   products.forEach((product) => {
     total += product.data().stock * product.data().price;
+  });
+  return total;
+};
+
+export const getProductStockCount = async () => {
+  const products = await getDocs(collection(firestore, 'products'));
+  let total = 0;
+  products.forEach((product) => {
+    total += product.data().stock;
   });
   return total;
 };
