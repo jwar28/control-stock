@@ -12,6 +12,10 @@ export default {
       require.resolve('@skeletonlabs/skeleton'),
       '../**/*.{html,js,svelte,ts}'
     ),
+    join(
+      require.resolve('@carbon/charts-svelte/styles.css'),
+      '../**/*.{html,js,svelte,ts}'
+    ),
   ],
   theme: {
     extend: {},
