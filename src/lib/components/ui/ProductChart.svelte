@@ -1,15 +1,13 @@
 <script lang="ts">
-  import '@carbon/charts-svelte/styles.css';
   import {
     BarChartSimple,
     ChartTheme,
     ScaleTypes,
   } from '@carbon/charts-svelte';
+  import '@carbon/charts-svelte/styles.css';
   import { collectionStore } from 'sveltefire';
   import { firestore } from '$lib/firebase';
   import type { Product } from '$lib/types/product';
-
-  let data: any;
 
   const productList = collectionStore<Product>(firestore, 'products');
 
