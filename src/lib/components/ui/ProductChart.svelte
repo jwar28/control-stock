@@ -4,7 +4,6 @@
     ChartTheme,
     ScaleTypes,
   } from '@carbon/charts-svelte';
-  import '@carbon/charts-svelte/styles.css';
   import { collectionStore } from 'sveltefire';
   import { firestore } from '$lib/firebase';
   import type { Product } from '$lib/types/product';
