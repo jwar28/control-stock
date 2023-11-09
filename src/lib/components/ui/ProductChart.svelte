@@ -1,6 +1,10 @@
 <script lang="ts">
   import '@carbon/charts-svelte/styles.css';
-  import { BarChartSimple } from '@carbon/charts-svelte';
+  import {
+    BarChartSimple,
+    ChartTheme,
+    ScaleTypes,
+  } from '@carbon/charts-svelte';
   import { collectionStore } from 'sveltefire';
   import { firestore } from '$lib/firebase';
   import type { Product } from '$lib/types/product';
@@ -20,12 +24,12 @@
 <BarChartSimple
   {data}
   options={{
-    theme: 'g90',
+    theme: ChartTheme.G90,
     title: 'Productos en stock',
     height: '340px',
     axes: {
       left: { mapsTo: 'value' },
-      bottom: { mapsTo: 'group', scaleType: 'labels' },
+      bottom: { mapsTo: 'group', scaleType: ScaleTypes.LABELS },
     },
   }}
 />
