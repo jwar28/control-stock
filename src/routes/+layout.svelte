@@ -6,6 +6,7 @@
     initializeStores,
     type ModalComponent,
   } from '@skeletonlabs/skeleton';
+  import '@carbon/charts-svelte/styles.css';
   import { FirebaseApp, SignedOut } from 'sveltefire';
   import { SignedIn } from 'sveltefire';
   import {
