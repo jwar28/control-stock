@@ -1,5 +1,6 @@
 <script async script lang="ts">
   import { getTotalProducts, getTotalStockPrice } from '$lib/api/productApi';
+  import ProductChart from '$lib/components/ui/ProductChart.svelte';
   import StatCard from '$lib/components/ui/StatCard.svelte';
 
   let totalProducts = 0;
@@ -26,7 +27,14 @@
   }
 </script>
 
-<div class="flex justify-evenly">
-  <StatCard header="Productos en stock" value={totalProducts} />
-  <StatCard header="Valor total de stock" value={formattedPrice} />
+<div class="flex flex-col gap-5">
+  <p class="text-xl">Home</p>
+  <hr />
+  <div class="flex justify-evenly">
+    <StatCard header="Productos en stock" value={totalProducts} />
+    <StatCard header="Valor total de stock" value={formattedPrice} />
+  </div>
+  <div>
+    <ProductChart />
+  </div>
 </div>
