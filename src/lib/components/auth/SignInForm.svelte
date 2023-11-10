@@ -2,6 +2,8 @@
   import { signInWithEmailAndPassword, type Auth } from 'firebase/auth';
   import type { User } from '$lib/types/user';
 
+  export let auth: Auth;
+
   const user: User = {
     email: '',
     password: '',
@@ -9,11 +11,19 @@
 
   let errorMessage = '';
 
-  export let auth: Auth;
+  const signIn = async () =>
+    await signInWithEmailAndPassword(auth, user.email, user.password).catch(
+      (error) => {
+        errorMessage = error.message;
+      }
+    );
 </script>
 
 <img src="/logo.png" alt="" class="w-[30%]" />
-<div class="card p-4 w-[30%] flex justify-center shadow-xl h-fit">
+<form
+  class="card p-4 w-[30%] flex justify-center shadow-xl h-fit"
+  on:submit={() => signIn()}
+>
   <div class="w-[90%] flex flex-col gap-8">
     <p class="text-3xl text-center font-semibold">Iniciar sesión</p>
     <label class="label">
@@ -35,18 +45,13 @@
         bind:value={user.password}
       />
     </label>
-    <button
-      type="button"
+    <input
+      type="submit"
+      value="Ingresar"
       class="btn variant-filled-secondary"
-      on:click={() =>
-        signInWithEmailAndPassword(auth, user.email, user.password).catch(
-          (error) => {
-            errorMessage = error.message;
-          }
-        )}>Ingresar</button
-    >
+    />
     {#if errorMessage}
       <p class="text-error-500 text-center">{errorMessage}</p>
     {/if}
   </div>
-</div>
+</form>
