@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { getModalStore } from '@skeletonlabs/skeleton';
-  import type { Product } from '$lib/types/product';
-  import { updateProductById } from '$lib/api/productApi';
+  import type { Product } from '$lib/shared/models/product';
+  import { updateProductById } from '$lib/shared/services/productService';
   import ModalFormLayout from './ModalFormLayout.svelte';
 
   export let parent: SvelteComponent;

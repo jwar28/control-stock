@@ -1,6 +1,6 @@
 <script lang="ts">
   import { signInWithEmailAndPassword, type Auth } from 'firebase/auth';
-  import type { User } from '$lib/types/user';
+  import type { User } from '$lib/shared/models/user';
 
   export let auth: Auth;
 

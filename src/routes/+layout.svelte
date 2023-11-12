@@ -18,9 +18,9 @@
   } from '@floating-ui/dom';
   import { storePopup } from '@skeletonlabs/skeleton';
   import SignInForm from '$lib/components/auth/SignInForm.svelte';
-  import AppRail from '$lib/components/ui/AppRail.svelte';
+  import AppRail from '$lib/components/layout/AppRail.svelte';
   import ProductFormModal from '$lib/components/modals/ProductFormModal.svelte';
-  import Footer from '$lib/components/ui/Footer.svelte';
+  import Footer from '$lib/components/layout/Footer.svelte';
   import { auth, firestore, storage } from '$lib/firebase';
   import { page } from '$app/stores';
 

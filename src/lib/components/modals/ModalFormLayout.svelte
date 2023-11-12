@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Product } from '$lib/types/product';
+  import type { Product } from '$lib/shared/models/product';
   import { getModalStore } from '@skeletonlabs/skeleton';
   import type { SvelteComponent } from 'svelte';
 

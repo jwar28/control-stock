@@ -1,5 +1,5 @@
 import { firestore } from '$lib/firebase';
-import type { Product } from '$lib/types/product';
+import type { Product } from '$lib/shared/models/product';
 import {
   collection,
   addDoc,

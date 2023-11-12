@@ -3,7 +3,7 @@
     getProductStockCount,
     getProductsCount,
     getTotalStockPrice,
-  } from '$lib/api/productApi';
+  } from '$lib/shared/services/productService';
   import ProductChart from '$lib/components/ui/ProductChart.svelte';
   import StatCard from '$lib/components/ui/StatCard.svelte';
 

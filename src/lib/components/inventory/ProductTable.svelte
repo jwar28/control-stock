@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { deleteProductById } from '$lib/api/productApi';
+  import { deleteProductById } from '$lib/shared/services/productService';
   import { firestore } from '$lib/firebase';
-  import type { Product } from '$lib/types/product';
+  import type { Product } from '$lib/shared/models/product';
   import { type PaginationSettings, Paginator } from '@skeletonlabs/skeleton';
   import { collectionStore } from 'sveltefire';
   import { getModalStore } from '@skeletonlabs/skeleton';
